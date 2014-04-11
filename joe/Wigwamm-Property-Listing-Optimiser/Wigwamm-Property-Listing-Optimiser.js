@@ -1,3 +1,5 @@
+var postcodes = new Meteor.Collection();
+
 if (Meteor.isClient) {
   
 }

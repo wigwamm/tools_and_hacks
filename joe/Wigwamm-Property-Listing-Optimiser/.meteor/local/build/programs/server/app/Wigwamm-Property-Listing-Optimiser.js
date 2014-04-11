@@ -1,4 +1,6 @@
-(function(){if (Meteor.isClient) {
+(function(){var postcodes = new Meteor.Collection();
+
+if (Meteor.isClient) {
   
 }
 

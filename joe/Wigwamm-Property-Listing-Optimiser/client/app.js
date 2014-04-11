@@ -3,62 +3,63 @@ Template.details.events({
 	e.preventDefault();
 	Meteor.call('getData',1586,2,function(error, data){
 	    Session.set('houseData',data);
-	    $('#rankings').sortable({
-		update:function(event, ui){
-		    console.log($(ui.item[0]).index())
-		},
-		cancel:'li:not(#'+Session.get('myPrice')._id+')'
-	    });
-	    runSort();
-	    $('#rankings li').each(function(index,value){
-		console.log(Session.get($(value).attr('id')))
-//		console.log(calcScore((index+1)%10,Math.floor((index+1)/10)))
-	    })
+	    Template.details.myScore();
 	});
     },
-    'change #myPrice':function(e){
-	Session.set('myPrice',{price:+e.target.value,_id:Session.get('myPrice')._id});
-	runSort();
+    'change #myPrice':function(){
+	Session.set('myPrice',{_id:Random.id(),price:+$('#myPrice').val()});
+	Template.ranking.pages();
+    },
+    'click .glyphicon-circle-arrow-up':function(){
+	if($('#'+Session.get('myPrice')._id).index()!=1||+$('#'+Session.get('myPrice')._id).parent().attr('data-index')!=1){
+	    $('#myPrice').val(+$('#'+Session.get('myPrice')._id).parent().children()[$('#'+Session.get('myPrice')._id).index()-1].innerHTML+10);
+	    if(parseInt(Session.get('myPrice').price)){
+		tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
+	    } else {
+		$('#myPrice').val(+$('*[data-index='+(+$('#'+Session.get('myPrice')._id).parent().attr('data-index')-1)+']').children()[10].innerHTML+10);tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
+	    }
+	}
+    },
+    'click .glyphicon-circle-arrow-down':function(){
+	try{
+	    $('#myPrice').val(+$('#'+Session.get('myPrice')._id).parent().children()[$('#'+Session.get('myPrice')._id).index()+1].innerHTML-10);tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
+	}catch(e){
+	    $('#myPrice').val(+$('*[data-index='+(+$('#'+Session.get('myPrice')._id).parent().attr('data-index')+1)+']').children()[1].innerHTML-10);tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
+	}
     }
 });
 
-var runSort = function(){
-    $('ul li').tsort('',{sortFunction:function(a,b){
-	var iCalcA = parseInt(a.s[0].split(' ')[4]);
-	var iCalcB = parseInt(b.s[0].split(' ')[4]);
-	return iCalcA===iCalcB?0:(iCalcA<iCalcB?1:-1);
-    }});
+var calcScore = function(pos, pgs){
+    return Math.floor((((10-((pos)/1.5))/(pgs))*10));
 }
 
-var calcScore = function(pos, pgs){
-    return Math.floor((((10-((pos+1)/1.5))/(pgs+1))*10));
+Template.details.myScore=function(){
+    $('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'})
+    Session.set('currentScore',calcScore($('#'+Session.get('myPrice')._id).index()+1,+$('#'+Session.get('myPrice')._id).parent().attr('data-index')));
+    return Session.get('currentScore');
+}
+
+Template.details.myPrice=function(){
+    return Session.get('myPrice').price;
 }
 
 Session.set('houseData',[]);
-Session.set('myPrice',{price:0,_id:Random.id()})
+Session.set('myPrice',{price:0,_id:Random.id()});
 
-Template.ranking.results=function(){
-    var myPrice = Session.get('myPrice')
+Template.ranking.pages=function(){
+    var myPrice = Session.get('myPrice');
     var data = Session.get('houseData');
-    data.push(myPrice);
-    return data;
+    pages = [];
+    data.push(myPrice)
+    data.sort(function(a,b){return a.price-b.price}).reverse().map(function(value, index){
+	index%10==0?pages.push({index:Math.floor((+index)/10)+1,value:[]}):null;
+	pages[Math.floor(index/10)].value.push(value);
+    });
+    Session.set('pages', pages);
+    return Session.get('pages');
 }
-
-Template.ranking.scoreSessions=[]
-
-Template.ranking.score=function(id){
-    Session.set(id,1);
-    Template.ranking.scoreSessions.push(Session.get(id));
-    return Session.get(id);
-}
-
 $(function(){
-    $('#'+Session.get('myPrice')._id+' div,.score').css({'background-color':'#36C91C'});
-    $('#rankings').bind('DOMSubtreeModified',function(){
-	//runSort();
-	$('#rankings li').each(function(index,value){
-	    console.log('hi')
-//	    Session.set($(value).attr('id'),calcScore((index+1)%10, Math.floor((index+1)/10))+1)
-	});
+    $('.pages').bind('DOMSubtreeModified',function(){
+	Template.details.myScore();
     });
 });

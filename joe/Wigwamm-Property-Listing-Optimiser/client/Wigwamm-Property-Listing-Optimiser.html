@@ -1,41 +1,39 @@
 <head>
   <title>Wigwamm-Property-Listing-Optimiser</title>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script src='http://tinysort.sjeiti.com/dist/jquery.tinysort.min.js'></script>
 </head>
 
 <body>
   {{> scoresBar}}
-  {{> ranking}}
-  {{> graph}}
   {{> details}}
+  {{> ranking}}
 </body>
 
 <template name='details'>
-  <div id='details'>
-    <form id='findForm' onsubmit='return true;'>
-      <div>
-	<input type='number' id='myPrice' required/>
-	<label for='myPrice'><span class='glyphicon glyphicon-gbp'></span><span class='pullRight padRight'>My Price</span></label>
-      </div>
-      <div>
-	<input type='numer' id='outCode' required/>
-	<label for='outCode'><span class='glyphicon glyphicon-home'></span><span class='pullRight padRight'>Out Code</span></label>
-      </div>
-      <div>
-	<input type='number' id='beds' required/>
-	<label for='beds'><span class='glyphicon glyphicon-user'></span><span class='pullRight padRight'>Beds</span></label>
-      </div>
-      <div>
-	<input type='submit' id='submit' class='submit' value='Go!'/>
-      </div>
-    </form>
-  </div>
-</template>
+  <form id='findForm' action='#'>
+    <div>
+      <input type='number' id='myPrice' required/>
+      <label for='myPrice'>My Price</label>
+    </div>
+    <div>
+      <input type='numer' id='outCode' required/>
+      <label for='outCode'>Out Code</label>
+    </div>
+    <div>
+      <input type='number' id='beds' required/>
+      <label for='beds'>Beds</label>
+    </div>
+    <div>
+      <input type='submit' value='go'/>
+    </div>
+  </form>
 
-<template name='graph'>
-  <div id='graph'></div>
+  <div class='detailsPad pullRight'>
+    <span>Score:<br /> {{myScore}}</span><br />
+    <span>My Price:<br /> {{myPrice}}</span>
+    <span class='glyphicon glyphicon-circle-arrow-down'></span>
+    <span class='glyphicon glyphicon-circle-arrow-up'></span>
+  </div>
 </template>
 
 <template name='scoresBar'>
@@ -43,23 +41,14 @@
 </template>
 
 <template name='ranking'>
-  <div id='ranking'>
-    <ul id='rankings'>
-      {{#each results}}
-      <li id='{{_id}}'>
-	<div>
-	  <span class='glyphicon glyphicon-globe'></span>
-	  <span class='price'>{{price}}</span>
-	  <span class='glyphicon glyphicon-arrow-up'></span>
-	  <span class='glyphicon glyphicon-arrow-down'></span>
-	</div>
-	<span class='score'>
-	  <span class='glyphicon glyphicon-eye-open'>
-	  </span>
-	  {{score _id}}
-	</span>
-      </li>
+  <div class='pages'>
+    {{#each pages}}
+    <div class='page' data-index='{{index}}'>
+      <h3>Page: {{index}}</h3>
+      {{#each this.value}}
+      <div id='{{_id}}'>{{price}}</div>
       {{/each}}
-    </ul>
+    </div>
+    {{/each}}
   </div>
 </template>
