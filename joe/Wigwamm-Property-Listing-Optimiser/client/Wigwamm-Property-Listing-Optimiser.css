@@ -1,0 +1,223 @@
+/* CSS declarations go here */
+#scoresBar {
+    position:fixed;
+    top:0%;
+    width:100%;
+    height:50px;
+    background-color:#f06d06;
+    color:#fff;
+    left:0%;
+}
+
+#ranking {
+    padding-top:50px;
+    position:fixed;
+    height:100%;
+    width:70%;
+    left:0%;
+    bottom:0%;
+    z-index:-10;
+}
+
+#details {
+    position:fixed;
+    border:2px solid gray;
+    height:50%;
+    width:30%;
+    right:0%;
+    top:50px;
+    z-index:-10;
+}
+
+#graph {
+    position:fixed;
+    border:2px solid gray;
+    height:50%;
+    width:30%;
+    right:0%;
+    bottom:0%;
+    z-index:-10;
+}
+
+form {
+    overflow:hidden;
+    height:100%;
+    animation:wiggle 0.5s;
+    width: 100%;
+}
+
+@keyframes wiggle {
+    0% {transform:rotate(4deg);}
+    50% {transform:rotate(-4deg);}
+    100% {transform:rotate(4deg);}
+}
+
+form div {
+    position: relative;
+    overflow: hidden;
+    height:25%;
+}
+
+form input {
+    width: 100%;
+    height:100%;
+    border: 2px solid gray; 
+    background: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 8px 12px;
+    outline: 0;
+}
+
+form label {
+    position: absolute;
+    top: 10;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: 0.2s;
+    padding-left:10px;
+    color:#B5B4B3;
+}
+
+input:focus + label {
+    top: 100%;
+    margin-top: -25px;
+    background: #f06d06;
+    color: white;
+    font-size: 100%;
+    padding: 2px 20px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+input:valid {
+    background: white;
+}
+
+.submit {
+    background :#f06d06;
+    color:white;
+}
+
+#loader div {
+  background-color:#ccc;
+  height:100px;
+  width:15px;
+  position:absolute;
+  animation: rotateLoader 4s infinite;
+}
+
+#loader div:after {
+  content:"";
+  background-color:#f06d06;
+  height:100px;
+  width:15px;
+  position:absolute;
+  transform-origin: bottom center;
+  animation: loader 4s infinite;
+  transform:rotateX(90deg);
+}
+
+@keyframes rotateLoader {
+  50% {transform:rotateZ(180deg);}
+}
+
+@keyframes loader {
+  50% {transform:rotateX(0deg);}
+  100% {transform:rotateX(90deg);}
+}
+
+#loader div:nth-child(2) {
+  transform:rotateZ(30deg);
+}
+
+#loader div:nth-child(3) {
+  transform:rotateZ(60deg);
+}
+
+#loader div:nth-child(4) {
+  transform:rotateZ(90deg);
+}
+
+#loader div:nth-child(5) {
+  transform:rotateZ(120deg);
+}
+
+#loader div:nth-child(6) {
+  transform:rotateZ(150deg);
+}
+
+#loader { 
+  position:fixed;
+  top:55%;
+  left:50%;
+  margin-left:-7px;
+  display:none;
+  opacity:0;
+}
+
+.title {
+    display:block;
+    text-align:right;
+    float:right;
+    width:100%;
+    color:white;
+    font-weight:bold;
+    padding-top:10px;
+    padding-right:15px;
+    font-size:130%;
+}
+
+#ranking {
+    padding-top:70px;
+}
+
+#ranking ul {
+    overflow-y:scroll;
+    height:90%;
+}
+
+#ranking li {
+    font-weight:bold;
+    font-size:130%;
+    list-style-type:none;
+    color:white;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#ranking div {
+    border-radius:10px;
+
+    border: 2px solid #ddd;
+    padding:20px;
+    background-color:#f06d06;
+    width:70%;
+    display:inline-block;
+}
+
+.score {
+    border-radius:10px;
+    border: 2px solid #ddd;
+    padding:20px;
+    margin-left:30px;
+    background-color:#f06d06;
+}
+
+.glyphicon-globe, .glyphicon-eye-open {
+    margin-right:10px;
+}
+
+.glyphicon-arrow-up, .glyphicon-arrow-down {
+    float:right;
+}
+
+.pullRight {
+    float:right;
+}
+.padRight {
+    margin-right:10px;
+}

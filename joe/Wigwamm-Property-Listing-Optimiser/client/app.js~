@@ -1,0 +1,7 @@
+$(function(){
+    $('#findForm').submit(function(){
+	$.get('/find/'+$('#outCode').val()+','+$('#beds').val()+',houses', function(data){
+	    
+	})
+    }
+})
