@@ -8,7 +8,7 @@ Meteor.startup(function () { if (! UI.body.INSTANTIATED) { UI.body.INSTANTIATED 
 Template.__define__("details", (function() {
   var self = this;
   var template = this;
-  return [ HTML.Raw('<form id="findForm" action="#">\n    <div>\n      <input type="number" id="myPrice" required="">\n      <label for="myPrice">My Price</label>\n    </div>\n    <div>\n      <input type="numer" id="outCode" required="">\n      <label for="outCode">Out Code</label>\n    </div>\n    <div>\n      <input type="number" id="beds" required="">\n      <label for="beds">Beds</label>\n    </div>\n    <div>\n      <input type="submit" value="go">\n    </div>\n  </form>\n\n  '), HTML.DIV({
+  return [ HTML.Raw('<form id="findForm" action="#">\n    <div>\n      <input type="number" id="myPrice" required="">\n      <label for="myPrice">My Price</label>\n    </div>\n    <div>\n      <input type="numer" id="outCode" required="">\n      <label for="outCode">Post Code</label>\n    </div>\n    <div>\n      <input type="number" id="beds" required="">\n      <label for="beds">Beds</label>\n    </div>\n    <div>\n      <input type="submit" value="go">\n    </div>\n  </form>\n\n  '), HTML.DIV({
     "class": "detailsPad pullRight"
   }, "\n    ", HTML.SPAN(HTML.Raw("Score:<br> "), function() {
     return Spacebars.mustache(self.lookup("myScore"));

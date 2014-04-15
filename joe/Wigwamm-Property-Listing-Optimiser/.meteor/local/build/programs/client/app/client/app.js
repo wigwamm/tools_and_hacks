@@ -1,9 +1,13 @@
 (function(){Template.details.events({
     'submit #findForm':function(e){
 	e.preventDefault();
-	Meteor.call('getData',1586,2,function(error, data){
-	    Session.set('houseData',data);
-	    Template.details.myScore();
+	Meteor.call('getData',$('#outCode').val().split(' ')[0],$('#beds').val(),function(error, data){
+	    if(data!='error'){
+		Session.set('houseData',data);
+		Template.details.myScore();
+	    } else {
+		alert('Something Went Wrong!');
+	    }
 	});
     },
     'change #myPrice':function(){
@@ -60,7 +64,7 @@ Template.ranking.pages=function(){
 }
 $(function(){
     $('.pages').bind('DOMSubtreeModified',function(){
-	Template.details.myScore();
+//	Template.details.myScore();
     });
 });
 
