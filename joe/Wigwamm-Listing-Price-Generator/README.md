@@ -1,2 +1,0 @@
-Wigwamm-Listing-Price-Generator
-===============================
