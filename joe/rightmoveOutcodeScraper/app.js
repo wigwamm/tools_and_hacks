@@ -9,7 +9,7 @@ getStuff = function(i) {
     request('http://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=OUTCODE^'+i, function(err, resp, body){
 	console.log('Got Page ', i);
 	$ = cheerio.load(body);
-	if($('#searchResultsInput')){
+	if($('#searchResultsInput').val()){
 	    db.rightmoveCodes.insert({outcode:$('#searchResultsInput').val(),locationIdent:i});
 	    console.log('On location Ident: ', i);
 	    getStuff(i+1);

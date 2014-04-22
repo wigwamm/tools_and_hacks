@@ -17,7 +17,7 @@
     'click .glyphicon-circle-arrow-up':function(){
 	if($('#'+Session.get('myPrice')._id).index()!=1||+$('#'+Session.get('myPrice')._id).parent().attr('data-index')!=1){
 	    $('#myPrice').val(+$('#'+Session.get('myPrice')._id).parent().children()[$('#'+Session.get('myPrice')._id).index()-1].innerHTML+10);
-	    if(parseInt(Session.get('myPrice').price)){
+	    if($('#'+Session.get('myPrice')._id).index()!=1){
 		tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
 	    } else {
 		$('#myPrice').val(+$('*[data-index='+(+$('#'+Session.get('myPrice')._id).parent().attr('data-index')-1)+']').children()[10].innerHTML+10);tmp=Session.get('myPrice');tmp.price=$('#myPrice').val();Session.set('myPrice',tmp);
@@ -38,7 +38,8 @@ var calcScore = function(pos, pgs){
 }
 
 Template.details.myScore=function(){
-    $('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'})
+    console.log($('#'+Session.get('myPrice')._id).css('color'))
+    $('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'});
     Session.set('currentScore',calcScore($('#'+Session.get('myPrice')._id).index()+1,+$('#'+Session.get('myPrice')._id).parent().attr('data-index')));
     return Session.get('currentScore');
 }
@@ -65,6 +66,7 @@ Template.ranking.pages=function(){
 $(function(){
     $('.pages').bind('DOMSubtreeModified',function(){
 //	Template.details.myScore();
+	$('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'});
     });
 });
 

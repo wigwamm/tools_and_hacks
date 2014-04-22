@@ -399,9 +399,9 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/client/app.js?4862e276bf1f61b52859c4fc99c21ec66029c1b7",
-      "size": 2850,
-      "hash": "4862e276bf1f61b52859c4fc99c21ec66029c1b7"
+      "url": "/client/app.js?b1bc45aa4dab42849f84375d2fb44e818002cf70",
+      "size": 3003,
+      "hash": "b1bc45aa4dab42849f84375d2fb44e818002cf70"
     },
     {
       "path": "app/Wigwamm-Property-Listing-Optimiser.js",
@@ -462,7 +462,7 @@
     {
       "path": "app.html",
       "where": "internal",
-      "hash": "95a7107a019e09d082267cb1e55ee052a077d972"
+      "hash": "194f9632dfd39dc5beb856a6ad18830b98702adb"
     }
   ]
 }
