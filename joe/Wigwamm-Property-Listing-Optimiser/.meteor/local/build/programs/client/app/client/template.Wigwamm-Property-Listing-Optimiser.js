@@ -1,20 +1,26 @@
 (function(){
 UI.body.contentParts.push(UI.Component.extend({render: (function() {
   var self = this;
-  return [ Spacebars.include(self.lookupTemplate("scoresBar")), "\n  ", Spacebars.include(self.lookupTemplate("details")), "\n  ", Spacebars.include(self.lookupTemplate("ranking")) ];
+  return [ HTML.Raw("<br><br><br>\n  "), Spacebars.include(self.lookupTemplate("youThink")), "\n  ", Spacebars.include(self.lookupTemplate("details")) ];
 })}));
 Meteor.startup(function () { if (! UI.body.INSTANTIATED) { UI.body.INSTANTIATED = true; UI.DomRange.insert(UI.render(UI.body).dom, document.body); } });
+
+Template.__define__("youThink", (function() {
+  var self = this;
+  var template = this;
+  return HTML.Raw('<form id="findForm" action="#">\n    <h3>You think your <input type="number" min="0" id="myPrice" required=""> bed property</h3>\n    <h3>in <input type="text" min="5" id="outCode" required=""></h3>\n    <h3>is worth <input type="number" min="0" id="beds" required=""></h3>\n  </form>');
+}));
 
 Template.__define__("details", (function() {
   var self = this;
   var template = this;
-  return [ HTML.Raw('<form id="findForm" action="#">\n    <div>\n      <input type="number" id="myPrice" required="">\n      <label for="myPrice">My Price</label>\n    </div>\n    <div>\n      <input type="numer" id="outCode" required="">\n      <label for="outCode">Post Code</label>\n    </div>\n    <div>\n      <input type="number" id="beds" required="">\n      <label for="beds">Beds</label>\n    </div>\n    <div>\n      <input type="submit" value="go">\n    </div>\n  </form>\n\n  '), HTML.DIV({
+  return HTML.DIV({
     "class": "detailsPad pullRight"
-  }, "\n    ", HTML.SPAN(HTML.Raw("Score:<br> "), function() {
+  }, "\n    ", HTML.SPAN("Score: ", function() {
     return Spacebars.mustache(self.lookup("myScore"));
-  }), HTML.Raw("<br>\n    "), HTML.SPAN(HTML.Raw("My Price:<br> "), function() {
+  }), HTML.Raw("<br>\n    "), HTML.SPAN("My Price: ", function() {
     return Spacebars.mustache(self.lookup("myPrice"));
-  }), HTML.Raw('\n    <span class="glyphicon glyphicon-circle-arrow-down"></span>\n    <span class="glyphicon glyphicon-circle-arrow-up"></span>\n  ')) ];
+  }), HTML.Raw('\n    click <span class="glyphicon glyphicon-circle-arrow-down"></span>\n    and <span class="glyphicon glyphicon-circle-arrow-up"></span>\n    to see how the visibility changes as you increase or decrease your asking price.\n  '));
 }));
 
 Template.__define__("scoresBar", (function() {

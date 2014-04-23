@@ -32,127 +32,6 @@
     bottom:0;
 }
 
-form {
-    overflow:hidden;
-    height:300px%;
-    animation:wiggle 0.5s;
-    width: 40%;
-    margin-top:5%;
-}
-
-@keyframes wiggle {
-    0% {transform:rotate(4deg);}
-    50% {transform:rotate(-4deg);}
-    100% {transform:rotate(4deg);}
-}
-
-form div {
-    position: relative;
-    overflow: hidden;
-    height:25%;
-}
-
-form input {
-    width: 100%;
-    height:100%;
-    border: 2px solid gray; 
-    background: none;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    padding: 8px 12px;
-    outline: 0;
-}
-
-form label {
-    position: absolute;
-    top: 10;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    transition: 0.2s;
-    padding-left:10px;
-    color:#B5B4B3;
-}
-
-input:focus + label {
-    top: 100%;
-    margin-top: -25px;
-    background: #f06d06;
-    color: white;
-    font-size: 100%;
-    padding: 2px 20px;
-    z-index: 2;
-    text-transform: uppercase;
-}
-
-input:valid {
-    background: white;
-}
-
-.submit {
-    background :#f06d06;
-    color:white;
-}
-
-#loader div {
-  background-color:#ccc;
-  height:100px;
-  width:15px;
-  position:absolute;
-  animation: rotateLoader 4s infinite;
-}
-
-#loader div:after {
-  content:"";
-  background-color:#f06d06;
-  height:100px;
-  width:15px;
-  position:absolute;
-  transform-origin: bottom center;
-  animation: loader 4s infinite;
-  transform:rotateX(90deg);
-}
-
-@keyframes rotateLoader {
-  50% {transform:rotateZ(180deg);}
-}
-
-@keyframes loader {
-  50% {transform:rotateX(0deg);}
-  100% {transform:rotateX(90deg);}
-}
-
-#loader div:nth-child(2) {
-  transform:rotateZ(30deg);
-}
-
-#loader div:nth-child(3) {
-  transform:rotateZ(60deg);
-}
-
-#loader div:nth-child(4) {
-  transform:rotateZ(90deg);
-}
-
-#loader div:nth-child(5) {
-  transform:rotateZ(120deg);
-}
-
-#loader div:nth-child(6) {
-  transform:rotateZ(150deg);
-}
-
-#loader { 
-  position:fixed;
-  top:55%;
-  left:50%;
-  margin-left:-7px;
-  display:none;
-  opacity:0;
-}
-
 .title {
     display:block;
     text-align:right;
@@ -190,4 +69,33 @@ input:valid {
 }
 .padRight {
     margin-right:10px;
+}
+
+
+#findForm {
+
+}
+
+#findForm h3:first-of-type input {
+    width:2em;
+}
+
+input {
+    color:#aaa;
+    background:none;
+    border:none;
+    max-width:7em;
+    box-shadow:none;
+}
+
+input:invalid {
+    border-bottom:3px solid #f06d06;
+    padding:8px;
+    transition:0.2s;
+}
+
+input:valid {
+    border-bottom:3px solid green;
+    padding:3px;
+    transition: 0.2s;
 }

@@ -1,14 +1,16 @@
-Template.details.events({
-    'submit #findForm':function(e){
-	e.preventDefault();
-	Meteor.call('getData',$('#outCode').val().split(' ')[0],$('#beds').val(),function(error, data){
-	    if(data!='error'){
-		Session.set('houseData',data);
-		Template.details.myScore();
-	    } else {
-		alert('Something Went Wrong!');
-	    }
-	});
+Template.youThink.events({
+    'change #findForm input':function(){
+	if($('#findForm input')[0].validity.valid&&$('#findForm input')[1].validity.valid&&$('#findForm input')[2].validity.valid) {
+	    console.log('hi')
+	    Meteor.call('getData',$('#outCode').val().replace(' ','').slice(0,$('#outCode').val().replace(' ','').length-3).toUpperCase(),$('#beds').val(),function(error, data){
+		if(data!='error'){
+		    Session.set('houseData',data);
+		    Template.details.myScore();
+		} else {
+		    alert('Something Went Wrong!');
+		}
+	    });
+	}
     },
     'change #myPrice':function(){
 	Session.set('myPrice',{_id:Random.id(),price:+$('#myPrice').val()});

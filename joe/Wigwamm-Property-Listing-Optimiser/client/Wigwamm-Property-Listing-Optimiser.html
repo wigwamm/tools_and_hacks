@@ -4,35 +4,38 @@
 </head>
 
 <body>
-  {{> scoresBar}}
+  <br /><br /><br />
+  {{> youThink}}
   {{> details}}
-  {{> ranking}}
 </body>
 
-<template name='details'>
+<template name='youThink'>
   <form id='findForm' action='#'>
-    <div>
-      <input type='number' id='myPrice' required/>
-      <label for='myPrice'>My Price</label>
-    </div>
-    <div>
-      <input type='numer' id='outCode' required/>
-      <label for='outCode'>Post Code</label>
-    </div>
-    <div>
-      <input type='number' id='beds' required/>
-      <label for='beds'>Beds</label>
-    </div>
-    <div>
-      <input type='submit' value='go'/>
-    </div>
+    <h3>You think your <input type='number' min='0' id='myPrice' required/> bed property</h3>
+    <h3>in <input type='text' min='5' id='outCode' required/></h3>
+    <h3>is worth <input type='number' min='0' id='beds' required/></h3>
   </form>
+</template>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<template name='details'>  
   <div class='detailsPad pullRight'>
-    <span>Score:<br /> {{myScore}}</span><br />
-    <span>My Price:<br /> {{myPrice}}</span>
-    <span class='glyphicon glyphicon-circle-arrow-down'></span>
-    <span class='glyphicon glyphicon-circle-arrow-up'></span>
+    <span>Score: {{myScore}}</span><br />
+    <span>My Price: {{myPrice}}</span>
+    click <span class='glyphicon glyphicon-circle-arrow-down'></span>
+    and <span class='glyphicon glyphicon-circle-arrow-up'></span>
+    to see how the visibility changes as you increase or decrease your asking price.
   </div>
 </template>
 
