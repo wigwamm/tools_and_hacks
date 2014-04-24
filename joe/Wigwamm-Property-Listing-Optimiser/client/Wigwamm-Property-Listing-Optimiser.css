@@ -23,6 +23,7 @@
 #arrows .glyphicon {
     font-size:4em;
     margin-left:10%;
+    cursor: pointer;
 }
 
 .page {
