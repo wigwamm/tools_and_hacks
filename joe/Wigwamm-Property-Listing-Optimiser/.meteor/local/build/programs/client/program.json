@@ -390,38 +390,38 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/client/template.Wigwamm-Property-Listing-Optimiser.js?cf9bed8131fc63013b24718574821d5600a603ea",
-      "size": 2616,
-      "hash": "cf9bed8131fc63013b24718574821d5600a603ea"
+      "url": "/client/template.Wigwamm-Property-Listing-Optimiser.js?183bcc5710a8ad45f298bb6a43abb0d10c2583b8",
+      "size": 3292,
+      "hash": "183bcc5710a8ad45f298bb6a43abb0d10c2583b8"
     },
     {
       "path": "app/client/app.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/client/app.js?0ced366cc28b63870ba27051e380a1e0ddcf59e0",
-      "size": 3221,
-      "hash": "0ced366cc28b63870ba27051e380a1e0ddcf59e0"
+      "url": "/client/app.js?8def533fb6bb29820fb49f76a18b35c786e1e332",
+      "size": 4291,
+      "hash": "8def533fb6bb29820fb49f76a18b35c786e1e332"
     },
     {
       "path": "app/Wigwamm-Property-Listing-Optimiser.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/Wigwamm-Property-Listing-Optimiser.js?17595f7396039bf53888bae78cda472fd421f0d7",
-      "size": 1186,
-      "hash": "17595f7396039bf53888bae78cda472fd421f0d7"
+      "url": "/Wigwamm-Property-Listing-Optimiser.js?c6b4d973cbf6fef7706514e6155a3ccb2fad86e7",
+      "size": 1188,
+      "hash": "c6b4d973cbf6fef7706514e6155a3ccb2fad86e7"
     },
     {
-      "path": "9facd8cbbff8e8cfca0cca0b9d116cae6bbeeb2e.css",
+      "path": "f06d1892d790fc9288eacbabb9577fb6d4fb55b4.css",
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/9facd8cbbff8e8cfca0cca0b9d116cae6bbeeb2e.css",
-      "sourceMap": "9facd8cbbff8e8cfca0cca0b9d116cae6bbeeb2e.css.map",
-      "sourceMapUrl": "/9facd8cbbff8e8cfca0cca0b9d116cae6bbeeb2e.map",
-      "size": 124172,
-      "hash": "e0c10df1f9283237569e07535188fd68ad212671"
+      "url": "/f06d1892d790fc9288eacbabb9577fb6d4fb55b4.css",
+      "sourceMap": "f06d1892d790fc9288eacbabb9577fb6d4fb55b4.css.map",
+      "sourceMapUrl": "/f06d1892d790fc9288eacbabb9577fb6d4fb55b4.map",
+      "size": 123975,
+      "hash": "504b3bb8d7c725a190126980827c8d639b79ddb4"
     },
     {
       "path": "packages/bootstrap-3/bootstrap-3/fonts/glyphicons-halflings-regular.eot",
@@ -462,7 +462,7 @@
     {
       "path": "app.html",
       "where": "internal",
-      "hash": "33e84ee0374d14d6efe85a28d410d4c6f89ff90e"
+      "hash": "a87ec8f3cf3124334d34aae7e9a9c2deaffa9673"
     }
   ]
 }

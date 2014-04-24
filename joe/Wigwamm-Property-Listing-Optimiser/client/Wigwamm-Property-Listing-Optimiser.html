@@ -1,20 +1,39 @@
 <head>
   <title>Wigwamm-Property-Listing-Optimiser</title>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src='http://fgnass.github.io/spin.js/spin.min.js'></script>
 </head>
 
 <body>
-  <br /><br /><br />
-  {{> youThink}}
-  {{> details}}
+  <div id='youThink'>
+    {{> youThink}}
+  </div>
+  <div id='details'>
+    {{> details}}
+  </div>
+  <div id='arrows'>
+    {{> arrows}}
+  </div>
+  <div id='ranking'>
+    {{> ranking}}
+  </div>
 </body>
 
 <template name='youThink'>
   <form id='findForm' action='#'>
-    <h3>You think your <input type='number' min='0' id='myPrice' required/> bed property</h3>
+    <h3>You think your <input type='number' min='0' id='beds' required/> bed property</h3>
     <h3>in <input type='text' min='5' id='outCode' required/></h3>
-    <h3>is worth <input type='number' min='0' id='beds' required/></h3>
+    <h3>is worth <input type='number' min='0' id='myPrice' required/></h3>
   </form>
+</template>
+
+
+
+
+<template name='details'>
+  <h3>Your <strong>Score</strong> is: {{myScore}}</h3><br />
+  <h3>Your <strong>Price</strong> is: {{myPrice}}</h3><br />
+  <h3>You are on <strong>Page</strong>: {{myPage}}</h3><br />
 </template>
 
 
@@ -24,19 +43,10 @@
 
 
 
-
-
-
-
-
-<template name='details'>  
-  <div class='detailsPad pullRight'>
-    <span>Score: {{myScore}}</span><br />
-    <span>My Price: {{myPrice}}</span>
-    click <span class='glyphicon glyphicon-circle-arrow-down'></span>
-    and <span class='glyphicon glyphicon-circle-arrow-up'></span>
-    to see how the visibility changes as you increase or decrease your asking price.
-  </div>
+<template name='arrows'>
+  <span class='glyphicon glyphicon-circle-arrow-up'></span>
+  <span class='glyphicon glyphicon-circle-arrow-down'></span>
+  <h3>Click <strong>up</strong> and <strong>down</strong> to see how the <strong>visibility</strong> changes as you <strong>increase</strong> or <strong>decrease</strong> your asking <strong>price</strong>.</h3>
 </template>
 
 <template name='scoresBar'>

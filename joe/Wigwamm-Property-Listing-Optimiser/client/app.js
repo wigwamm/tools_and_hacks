@@ -1,11 +1,35 @@
 Template.youThink.events({
     'change #findForm input':function(){
 	if($('#findForm input')[0].validity.valid&&$('#findForm input')[1].validity.valid&&$('#findForm input')[2].validity.valid) {
-	    console.log('hi')
+	    
+	    
+	    var opts = {
+		lines: 13, // The number of lines to draw
+		length: 20, // The length of each line
+		width: 10, // The line thickness
+		radius: 30, // The radius of the inner circle
+		corners: 1, // Corner roundness (0..1)
+		rotate: 0, // The rotation offset
+		direction: 1, // 1: clockwise, -1: counterclockwise
+		color: '#000', // #rgb or #rrggbb or array of colors
+		speed: 0.5, // Rounds per second
+		trail: 60, // Afterglow percentage
+		shadow: true, // Whether to render a shadow
+		hwaccel: false, // Whether to use hardware acceleration
+		className: 'spinner', // The CSS class to assign to the spinner
+		zIndex: 2e9, // The z-index (defaults to 2000000000)
+		top: '40%', // Top position relative to parent
+		left: '50%' // Left position relative to parent
+	    };
+	    var target = document.getElementById('findForm');
+	    var spinner = new Spinner(opts).spin(target);
+	    
+	    
 	    Meteor.call('getData',$('#outCode').val().replace(' ','').slice(0,$('#outCode').val().replace(' ','').length-3).toUpperCase(),$('#beds').val(),function(error, data){
 		if(data!='error'){
 		    Session.set('houseData',data);
 		    Template.details.myScore();
+		    spinner.stop();
 		} else {
 		    alert('Something Went Wrong!');
 		}
@@ -15,7 +39,9 @@ Template.youThink.events({
     'change #myPrice':function(){
 	Session.set('myPrice',{_id:Random.id(),price:+$('#myPrice').val()});
 	Template.ranking.pages();
-    },
+    }
+});
+Template.arrows.events({
     'click .glyphicon-circle-arrow-up':function(){
 	if($('#'+Session.get('myPrice')._id).index()!=1||+$('#'+Session.get('myPrice')._id).parent().attr('data-index')!=1){
 	    $('#myPrice').val(+$('#'+Session.get('myPrice')._id).parent().children()[$('#'+Session.get('myPrice')._id).index()-1].innerHTML+10);
@@ -40,18 +66,21 @@ var calcScore = function(pos, pgs){
 }
 
 Template.details.myScore=function(){
-    console.log($('#'+Session.get('myPrice')._id).css('color'))
     $('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'});
     Session.set('currentScore',calcScore($('#'+Session.get('myPrice')._id).index()+1,+$('#'+Session.get('myPrice')._id).parent().attr('data-index')));
-    return Session.get('currentScore');
+    return Session.get('currentScore')||0;
 }
 
 Template.details.myPrice=function(){
     return Session.get('myPrice').price;
 }
 
+Template.details.myPage=function(){
+    return Session.get('myPrice').page
+}
+
 Session.set('houseData',[]);
-Session.set('myPrice',{price:0,_id:Random.id()});
+Session.set('myPrice',{price:0,_id:Random.id(),page:1});
 
 Template.ranking.pages=function(){
     var myPrice = Session.get('myPrice');
@@ -69,5 +98,8 @@ $(function(){
     $('.pages').bind('DOMSubtreeModified',function(){
 //	Template.details.myScore();
 	$('#'+Session.get('myPrice')._id).css({'color':'#9c4602','font-weight':'bold'});
+	tmp=Session.get('myPrice');
+	tmp.page=+$('#'+tmp._id).parent().attr('data-index');
+	Session.set('myPrice',tmp);
     });
 });
