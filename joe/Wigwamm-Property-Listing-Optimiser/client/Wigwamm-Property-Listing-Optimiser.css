@@ -15,10 +15,10 @@
 }
 
 #header p img {
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-  -o-transition-duration: 0.5;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 1.5s;
+  -moz-transition-duration: 1.5s;
+  -o-transition-duration: 1.5;
+  transition-duration: 1.5s;
 
   -webkit-transition-property: -webkit-transform;
   -moz-transition-property: -moz-transform;
