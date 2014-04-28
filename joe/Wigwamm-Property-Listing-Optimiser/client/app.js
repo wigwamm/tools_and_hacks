@@ -25,7 +25,7 @@ Template.youThink.events({
       var spinner = new Spinner(opts).spin(target);
 
 
-      Meteor.call('getData', $('#outCode').val().replace(' ', '').length <= 4 ? $('#outCode').val().replace(' ', '') : $('#outCode').val().replace(' ', '').slice(0, $('#outCode').val().replace(' ', '').length - 3).toUpperCase(), $('#beds').val(), function (error, data) {
+      Meteor.call('getData', $('#outCode').val().replace(' ', '').length <= 4 ? $('#outCode').val().replace(' ', '').toUpperCase() : $('#outCode').val().replace(' ', '').slice(0, $('#outCode').val().replace(' ', '').length - 3).toUpperCase(), $('#beds').val(), function (error, data) {
         if (data) {
           Session.set('houseData', data);
           Template.details.myScore();
