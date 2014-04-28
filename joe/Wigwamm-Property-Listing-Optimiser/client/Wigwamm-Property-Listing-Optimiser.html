@@ -1,39 +1,41 @@
 <head>
-  <title>Wigwamm-Property-Listing-Optimiser</title>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src='http://fgnass.github.io/spin.js/spin.min.js'></script>
+    <title>Wigwamm-Property-Listing-Optimiser</title>
+    <link href='https://raw.githubusercontent.com/daneden/animate.css/master/animate.css' rel='stylesheet'/>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src='http://fgnass.github.io/spin.js/spin.min.js'></script>
 </head>
 
 <body>
-  <div id='youThink'>
-    {{> youThink}}
-  </div>
-  <div id='details'>
-    {{> details}}
-  </div>
-  <div id='arrows'>
-    {{> arrows}}
-  </div>
-  <div id='ranking'>
-    {{> ranking}}
-  </div>
+    <div id='header'><p><img src='logo.png' /> Wigwamm Pricing Optimiser</p></div>
+    <div id='youThink'>
+        {{> youThink}}
+    </div>
+    <div id='details'>
+        {{> details}}
+    </div>
+    <div id='arrows'>
+        {{> arrows}}
+    </div>
+    <div id='ranking'>
+        {{> ranking}}
+    </div>
 </body>
 
 <template name='youThink'>
-  <form id='findForm' action='#'>
-    <h3>You think your <input type='number' min='0' id='beds' required/> bed property</h3>
-    <h3>in <input type='text' min='5' id='outCode' required/></h3>
-    <h3>is worth <input type='number' min='0' id='myPrice' required/></h3>
-  </form>
+    <form id='findForm' action='#'>
+        <h3>You think your <input type='number' min='0' id='beds' required/> bed property</h3>
+        <h3>in <input type='text' min='5' id='outCode' required/></h3>
+        <h3>is worth <input type='number' min='0' id='myPrice' required/></h3>
+    </form>
 </template>
 
 
 
 
 <template name='details'>
-  <h3>Your <strong>Score</strong> is: {{myScore}}</h3><br />
-  <h3>Your <strong>Price</strong> is: {{myPrice}}</h3><br />
-  <h3>You are on <strong>Page</strong>: {{myPage}}</h3><br />
+    <h3>Your <strong>Score</strong> is: {{myScore}}</h3><br />
+    <h3>Your <strong>Price</strong> is: {{myPrice}}</h3><br />
+    <h3>You are on <strong>Page</strong>: {{myPage}}</h3><br />
 </template>
 
 
@@ -44,24 +46,24 @@
 
 
 <template name='arrows'>
-  <span class='glyphicon glyphicon-circle-arrow-up'></span>
-  <span class='glyphicon glyphicon-circle-arrow-down'></span>
-  <h3>Click <strong>up</strong> and <strong>down</strong> to see how the <strong>visibility</strong> changes as you <strong>increase</strong> or <strong>decrease</strong> your asking <strong>price</strong>.</h3>
+    <span class='glyphicon glyphicon-circle-arrow-up animated bounceInDown'></span>
+    <span class='glyphicon glyphicon-circle-arrow-down'></span>
+    <h3>Click <strong>up</strong> and <strong>down</strong> to see how the <strong>visibility</strong> changes as you <strong>increase</strong> or <strong>decrease</strong> your asking <strong>price</strong>.</h3>
 </template>
 
 <template name='scoresBar'>
-  <div id='scoresBar'><span class='title'>Property Listing Optimiser</span></div>
+    <div id='scoresBar'><span class='title'>Property Listing Optimiser</span></div>
 </template>
 
 <template name='ranking'>
-  <div class='pages'>
-    {{#each pages}}
-    <div class='page' data-index='{{index}}'>
-      <h3>Page: {{index}}</h3>
-      {{#each this.value}}
-      <div id='{{_id}}'>{{price}}</div>
-      {{/each}}
+    <div class='pages'>
+        {{#each pages}}
+        <div class='page' data-index='{{index}}'>
+            <h3>Page: {{index}}</h3>
+            {{#each this.value}}
+            <div id='{{_id}}'>{{price}}</div>
+            {{/each}}
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
-  </div>
 </template>

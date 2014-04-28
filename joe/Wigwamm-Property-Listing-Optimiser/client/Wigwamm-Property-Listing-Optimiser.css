@@ -1,90 +1,139 @@
 /* CSS declarations go here */
 
+#header {
+  top:0;
+  height:50px;
+  width:100%;
+  background-color: #f06d06;
+  text-align:center;
+}
+
+#header p {
+  color:white;
+  font-weight:strong;
+  font-size:2em;
+}
+
+#header p img {
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5;
+  transition-duration: 0.5s;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+}
+
+#header p img:hover {
+  -webkit-transform:rotateY(360deg);
+  -moz-transform:rotateY(360deg);
+  -o-transform:rotateY(360deg);
+  transform:rotateY(360deg);
+}
+
 #youThink {
-    margin-left:40px;
-    margin-top:40px;
+  margin-left:40px;
+  margin-top:40px;
 }
 
 #details {
-    position:absolute;
-    right:40px;
-    top:40px;
-    text-align:right;
+  position:absolute;
+  right:40px;
+  top:60px;
+  text-align:right;
 }
 
 #arrows {
-    margin-top:100px;
-    margin-right:40px;
-    float:right;
-    width:20%;
-    text-align:right;
+  margin-top:100px;
+  margin-right:40px;
+  float:right;
+  width:20%;
+  text-align:right;
 }
 
 #arrows .glyphicon {
-    font-size:4em;
-    margin-left:10%;
-    cursor: pointer;
-    color: #f06d06;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5;
+  transition-duration: 0.5s;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+  font-size:4em;
+  margin-left:10%;
+  cursor: pointer;
+  color: #f06d06;
+}
+
+.glyphicon:hover {
+  -webkit-transform:rotate(360deg);
+  -moz-transform:rotate(360deg);
+  -o-transform:rotate(360deg);
+  transform:rotate(360deg);
 }
 
 .page {
-    width:10%;
-    height:100%;
-    margin-top:0;
-    margin-right:10px;
-    display:inline-block;
-    color:#fff;
-    background-color:#f06d06;
-    border-radius:10px;
-    padding:10px;
+  width:10%;
+  height:100%;
+  margin-top:0;
+  margin-right:10px;
+  display:inline-block;
+  color:#fff;
+  background-color:#f06d06;
+  border-radius:10px;
+  padding:10px;
 }
 
 .pages {
-    max-height:50%;
-    padding:10px;
-    width:100%;
-    overflow-y:hidden;
-    white-space:nowrap;
-    position:fixed;
-    bottom:0;
+  max-height:50%;
+  padding:10px;
+  width:100%;
+  overflow-y:hidden;
+  white-space:nowrap;
+  position:fixed;
+  bottom:0;
 }
 
 .glyphicon {
-    z-index:100;
-    margin-right:10px;
+  z-index:100;
+  margin-right:10px;
 }
 
 .glyphicon-circle-arrow-up, .glyphicon-circle-arrow-down {
-    font-size:300%;
+  font-size:300%;
 }
 
 .pullRight {
-    float:right;
+  float:right;
 }
 .padRight {
-    margin-right:10px;
+  margin-right:10px;
 }
 
 #findForm h3:first-of-type input {
-    width:2em;
+  width:2em;
 }
 
 input {
-    color:#aaa;
-    background:none;
-    border:none;
-    max-width:7em;
-    box-shadow:none;
+  color:#aaa;
+  background:none;
+  border:none;
+  max-width:7em;
+  box-shadow:none;
 }
 
 input:invalid {
-    border-bottom:3px solid #f06d06;
-    padding:8px;
-    transition:0.2s;
+  border-bottom:3px solid #f06d06;
+  padding:8px;
+  transition:0.2s;
 }
 
 input:valid {
-    border-bottom:3px solid green;
-    padding:3px;
-    transition: 0.2s;
+  border-bottom:3px solid green;
+  padding:3px;
+  transition: 0.2s;
 }
