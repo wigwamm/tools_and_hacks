@@ -6,12 +6,15 @@
   width:100%;
   background-color: #f06d06;
   text-align:center;
+  cursor: pointer;
 }
 
 #header p {
   color:white;
   font-weight:strong;
   font-size:2em;
+  padding-top:3px;
+  text-shadow:0px 2px 2px #222;
 }
 
 #header p img {
@@ -24,6 +27,10 @@
   -moz-transition-property: -moz-transform;
   -o-transition-property: -o-transform;
   transition-property: transform;
+
+  -webkit-filter: drop-shadow(0px 3px 3px #222);
+  filter:         drop-shadow(0px 3px 3px #222);
+  height:45px;
 }
 
 #header p img:hover {
@@ -33,20 +40,38 @@
   transform:rotateY(360deg);
 }
 
+.seo:hover:after {
+  position:absolute;
+  content:'Search Engine Optimisation';
+  height:100px;
+  width:300px;
+  margin-left:-6em;
+  top:60px;
+  background-color:#ddd;
+  border:4px solid #f06d06;
+  color:#777;
+  text-shadow:none;
+  border-radius:10px;
+  transition:1s;
+}
+
 #youThink {
   margin-left:40px;
   margin-top:40px;
 }
 
-#details {
-  position:absolute;
-  right:40px;
-  top:60px;
-  text-align:right;
+.details {
+  margin-left:40px;
+  margin-top:30px;
+  display:inline-block;
+}
+
+.details strong {
+  color: #9c4602;
 }
 
 #arrows {
-  margin-top:100px;
+  margin-top:-100px;
   margin-right:40px;
   float:right;
   width:20%;
@@ -54,10 +79,10 @@
 }
 
 #arrows .glyphicon {
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-  -o-transition-duration: 0.5;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3;
+  transition-duration: 0.3s;
 
   -webkit-transition-property: -webkit-transform;
   -moz-transition-property: -moz-transform;
@@ -77,6 +102,7 @@
 }
 
 .page {
+  min-width:150px;
   width:10%;
   height:100%;
   margin-top:0;
@@ -126,14 +152,36 @@ input {
   box-shadow:none;
 }
 
+input:invalid:focus {
+  outline:1px solid #f06d06;
+  transition: 0.2s;
+}
+
 input:invalid {
   border-bottom:3px solid #f06d06;
   padding:8px;
   transition:0.2s;
 }
 
+input:valid:focus {
+  outline:1px solid green;
+  transition: 0.2s;
+}
+
 input:valid {
   border-bottom:3px solid green;
   padding:3px;
   transition: 0.2s;
+}
+
+.come-in {
+  transform: translateY(150px);
+  animation: come-in 0.8s ease forwards;
+}
+.come-in:nth-child(odd) {
+  animation-duration: 0.6s; /* So they look staggered */
+}
+
+@keyframes come-in {
+  to { transform: translateY(0); }
 }

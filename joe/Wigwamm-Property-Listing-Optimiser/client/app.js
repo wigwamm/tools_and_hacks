@@ -1,8 +1,6 @@
 Template.youThink.events({
-  'change #findForm input': function () {
+  'change #findForm input': function (evt) {
     if ($('#findForm input')[0].validity.valid && $('#findForm input')[1].validity.valid && $('#findForm input')[2].validity.valid) {
-
-
       var opts = {
         lines: 13, // The number of lines to draw
         length: 20, // The length of each line
@@ -28,10 +26,10 @@ Template.youThink.events({
       Meteor.call('getData', $('#outCode').val().replace(' ', '').length <= 4 ? $('#outCode').val().replace(' ', '').toUpperCase() : $('#outCode').val().replace(' ', '').slice(0, $('#outCode').val().replace(' ', '').length - 3).toUpperCase(), $('#beds').val(), function (error, data) {
         if (data) {
           Session.set('houseData', data);
-          Template.details.myScore();
+          Template.ranking.myScore();
           spinner.stop();
         } else {
-          alert('Something Went Wrong! Is everything valid?');
+          alert('Something Went Wrong! Is your postcode valid?');
           spinner.stop();
         }
       });
@@ -47,17 +45,19 @@ Template.youThink.events({
 });
 Template.arrows.events({
   'click .glyphicon-circle-arrow-up': function () {
-    if ($('#' + Session.get('myPrice')._id).index() != 1 || +$('#' + Session.get('myPrice')._id).parent().attr('data-index') != 1) {
-      $('#myPrice').val(+$('#' + Session.get('myPrice')._id).parent().children()[$('#' + Session.get('myPrice')._id).index() - 1].innerHTML + 10);
-      if ($('#' + Session.get('myPrice')._id).index() != 1) {
-        tmp = Session.get('myPrice');
-        tmp.price = $('#myPrice').val();
-        Session.set('myPrice', tmp);
-      } else {
-        $('#myPrice').val(+$('*[data-index=' + (+$('#' + Session.get('myPrice')._id).parent().attr('data-index') - 1) + ']').children()[10].innerHTML + 10);
-        tmp = Session.get('myPrice');
-        tmp.price = $('#myPrice').val();
-        Session.set('myPrice', tmp);
+    if($('#' + Session.get('myPrice')._id).parent().children()[$('#' + Session.get('myPrice')._id).index() - 1].innerHTML!='POA'){
+      if ($('#' + Session.get('myPrice')._id).index() != 1 || +$('#' + Session.get('myPrice')._id).parent().attr('data-index') != 1) {
+        $('#myPrice').val(+$('#' + Session.get('myPrice')._id).parent().children()[$('#' + Session.get('myPrice')._id).index() - 1].innerHTML + 10);
+        if ($('#' + Session.get('myPrice')._id).index() != 1) {
+          tmp = Session.get('myPrice');
+          tmp.price = $('#myPrice').val();
+          Session.set('myPrice', tmp);
+        } else {
+          $('#myPrice').val(+$('*[data-index=' + (+$('#' + Session.get('myPrice')._id).parent().attr('data-index') - 1) + ']').children()[10].innerHTML + 10);
+          tmp = Session.get('myPrice');
+          tmp.price = $('#myPrice').val();
+          Session.set('myPrice', tmp);
+        }
       }
     }
   },
@@ -80,7 +80,7 @@ var calcScore = function (pos, pgs) {
   return Math.floor((((10 - ((pos) / 1.5)) / (pgs)) * 10));
 }
 
-Template.details.myScore = function () {
+Template.ranking.myScore = function () {
   $('#' + Session.get('myPrice')._id).css({
     'color': '#9c4602',
     'font-weight': 'bold'
@@ -89,11 +89,11 @@ Template.details.myScore = function () {
   return Session.get('currentScore') || 0;
 }
 
-Template.details.myPrice = function () {
+Template.ranking.myPrice = function () {
   return Session.get('myPrice').price;
 }
 
-Template.details.myPage = function () {
+Template.ranking.myPage = function () {
   return Session.get('myPrice').page
 }
 
@@ -110,6 +110,13 @@ Template.ranking.pages = function () {
   pages = [];
   data.push(myPrice)
   data.sort(function (a, b) {
+
+    if(a.poa) {
+      return 999999999999999999-b.price
+    }
+    if(b.poa) {
+      return a.price-999999999999999999
+    }
     return a.price - b.price
   }).reverse().map(function (value, index) {
     index % 10 == 0 ? pages.push({
@@ -123,7 +130,7 @@ Template.ranking.pages = function () {
 }
 $(function () {
   $('.pages').bind('DOMSubtreeModified', function () {
-    //	Template.details.myScore();
+    //	Template.ranking.myScore();
     $('#' + Session.get('myPrice')._id).css({
       'color': '#9c4602',
       'font-weight': 'bold'

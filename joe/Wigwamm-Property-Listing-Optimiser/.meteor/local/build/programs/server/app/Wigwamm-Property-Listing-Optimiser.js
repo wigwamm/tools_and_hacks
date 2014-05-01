@@ -23,14 +23,21 @@ if (Meteor.isServer) {
           index = 0;
       while (true) {
         console.log('On Page: ', index)
-        $ = cheerio.load(Meteor.http.get('http://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=OUTCODE^' + outCode + '&radius=0&minBedrooms=' + bedrooms + '&maxBedrooms=' + bedrooms + '&displayPropertyType=houses' + '&index=' + index * 10).content);
+        $ = cheerio.load(Meteor.http.get('http://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=OUTCODE^' + outCode + '&radius=0&minBedrooms=' + bedrooms + '&maxBedrooms=' + bedrooms + '&index=' + index * 10).content);
         if ( $($('.pagecount')[0]).text().split(' ')[1] != last ||($($('.pagecount')[0]).text().split(' ')[1] != $($('.pagecount')[0]).text().split(' ')[3])) {
           $('.price-new a').each(function () {
-            if ($(this).text().indexOf('£') > -1)
+            if ($(this).text().indexOf('£') > -1) {
               data.push({
-                price: parseFloat($(this).text().replace('£', '').replace(',', '')),
+                price: parseFloat($(this).text().replace(/£/g, '').replace(/,/g, '')),
                 _id: Random.id()
               });
+            } else {
+              data.push({
+                price:'POA',
+                _id: Random.id(),
+                poa:true
+              });
+            }
           });
           ++index;
           last = $($('.pagecount')[0]).text().split(' ')[1];
